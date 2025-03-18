@@ -57,7 +57,7 @@ public class CreateAccountController {
             showAlert("Success", "Account created successfully!");
             
             // Return to login view
-            loginController.setPrimaryStage(cancelButton.getScene().getWindow());
+          loginController.setPrimaryStage((Stage) cancelButton.getScene().getWindow());
             
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter a valid number for initial balance.");
