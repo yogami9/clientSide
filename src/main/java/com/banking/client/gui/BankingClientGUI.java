@@ -18,8 +18,8 @@ public class BankingClientGUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         logger.info("Starting Banking Client GUI");
         
-        // Create the banking service - could be configurable
-        BankingService bankingService = BankingServiceFactory.createRestService("http://localhost:8080");
+        // Create the banking service using the factory
+        BankingService bankingService = BankingServiceFactory.createService();
         
         // Load the FXML and set the controller
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoginView.fxml"));

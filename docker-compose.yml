@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # Database Tier
+  db-tier:
+    image: banking-db-service:latest
+    container_name: banking-db-tier
+    ports:
+      - "8081:8080"
+    environment:
+      - MONGODB_URI=mongodb+srv://spicelife576:skiPPer8711@cluster0.pmbmm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - MONGODB_DATABASE=bankdb
+    networks:
+      - banking-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Application Tier
+  app-tier:
+    image: banking-application-service:latest
+    container_name: banking-app-tier
+    ports:
+      - "8080:8080"
+      - "1099:1099"
+    environment:
+      - DATABASE_TIER_URL=http://db-tier:8080
+    networks:
+      - banking-network
+    depends_on:
+      - db-tier
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Client Tier - X11 forwarding approach
+  client-x11:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: banking-client-x11
+    environment:
+      - REST_API_URL=http://app-tier:8080
+      - CONNECTION_TYPE=REST
+      - DISPLAY=:99
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    networks:
+      - banking-network
+    depends_on:
+      - app-tier
+
+  # Client Tier - VNC approach (uncommment to use)
+  # client-vnc:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/Dockerfile.vnc
+  #   container_name: banking-client-vnc
+  #   ports:
+  #     - "5901:5901"
+  #   environment:
+  #     - REST_API_URL=http://app-tier:8080
+  #     - CONNECTION_TYPE=REST
+  #   networks:
+  #     - banking-network
+  #   depends_on:
+  #     - app-tier
+
+networks:
+  banking-network:
+    driver: bridge
