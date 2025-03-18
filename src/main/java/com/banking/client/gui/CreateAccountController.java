@@ -1,5 +1,5 @@
 package com.banking.client.gui;
-
+import javafx.stage.Stage;
 import com.banking.client.service.BankingService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,7 +70,7 @@ public class CreateAccountController {
     @FXML
     private void handleCancel(ActionEvent event) {
         // Return to login view
-        loginController.setPrimaryStage(cancelButton.getScene().getWindow());
+        loginController.setPrimaryStage((Stage) cancelButton.getScene().getWindow());
     }
     
     private void showAlert(String title, String message) {
