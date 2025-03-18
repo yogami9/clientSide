@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" alignment="CENTER" prefWidth="400" prefHeight="300" 
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.banking.client.gui.CreateAccountController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label text="Create New Account" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    
+    <GridPane vgap="10" hgap="10" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints minWidth="150" prefWidth="150"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        
+        <Label text="Account Number:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="accountNumberField" promptText="Enter account number" 
+                  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        
+        <Label text="Account Holder:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="accountHolderField" promptText="Enter your name" 
+                  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        
+        <Label text="Initial Balance:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="initialBalanceField" promptText="Enter initial balance" 
+                  GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+    
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="createButton" text="Create Account" onAction="#handleCreate" 
+                prefWidth="150"/>
+        <Button fx:id="cancelButton" text="Cancel" onAction="#handleCancel" 
+                prefWidth="100"/>
+    </HBox>
+</VBox>

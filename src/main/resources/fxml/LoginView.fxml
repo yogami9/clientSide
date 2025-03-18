@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" alignment="CENTER" prefWidth="400" prefHeight="300" 
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.banking.client.gui.LoginController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label text="Banking Client" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    
+    <GridPane vgap="10" hgap="10" alignment="CENTER">
+        <Label text="Account Number:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="accountNumberField" promptText="Enter account number" 
+                  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    </GridPane>
+    
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="loginButton" text="Login" onAction="#handleLogin" 
+                prefWidth="100"/>
+        <Button fx:id="createAccountButton" text="Create Account" 
+                onAction="#handleCreateAccount" prefWidth="150"/>
+    </HBox>
+    
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill: red;"/>
+</VBox>
