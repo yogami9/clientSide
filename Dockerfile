@@ -46,7 +46,7 @@ COPY docker/start.sh ./start.sh
 RUN chmod +x ./start.sh
 
 # Environment variables for configuration
-ENV REST_API_URL=http://localhost:8080
+ENV REST_API_URL=https://applicationlayer.onrender.com
 ENV CONNECTION_TYPE=REST
 ENV RMI_HOST=localhost
 ENV RMI_PORT=1099
