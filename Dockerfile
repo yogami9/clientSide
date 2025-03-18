@@ -20,6 +20,7 @@ FROM openjdk:11-jre-slim
 
 # Install X11 and JavaFX dependencies
 # Install X11 and JavaFX dependencies
+# Add these packages to your Dockerfile
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libx11-6 \
@@ -29,6 +30,9 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     xvfb \
     procps \
+    dbus-x11 \
+    libgtk-3-0 \
+    libgtk2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
