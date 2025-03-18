@@ -19,6 +19,7 @@ RUN mvn package -DskipTests
 FROM openjdk:11-jre-slim
 
 # Install X11 and JavaFX dependencies
+# Install X11 and JavaFX dependencies
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libx11-6 \
@@ -27,6 +28,7 @@ RUN apt-get update && apt-get install -y \
     libxt6 \
     libxrender1 \
     xvfb \
+    procps \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
