@@ -20,6 +20,9 @@ fi
 # Set DISPLAY environment variable
 export DISPLAY=:99
 
+# Ensure JavaFX modules are correctly loaded
+JAVA_OPTS="${JAVA_OPTS} --module-path /opt/javafx-sdk-11/lib --add-modules javafx.controls,javafx.fxml"
+
 # Run the application
 echo "Starting Java application with DISPLAY=$DISPLAY"
-java -jar app.jar
+java $JAVA_OPTS -jar app.jar
