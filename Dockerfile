@@ -19,8 +19,6 @@ RUN mvn package -DskipTests
 FROM openjdk:11-jre-slim
 
 # Install X11 and JavaFX dependencies
-# Install X11 and JavaFX dependencies
-# Add these packages to your Dockerfile
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libx11-6 \
@@ -51,6 +49,10 @@ ENV CONNECTION_TYPE=REST
 ENV RMI_HOST=localhost
 ENV RMI_PORT=1099
 ENV DISPLAY=:99
+ENV JAVAFX_MODULES="javafx.controls,javafx.fxml"
+
+# Add JavaFX modules to module path
+ENV JAVA_TOOL_OPTIONS="--module-path /opt/javafx-sdk-11/lib --add-modules $JAVAFX_MODULES"
 
 # Expose port for VNC (if using VNC approach)
 EXPOSE 5901
